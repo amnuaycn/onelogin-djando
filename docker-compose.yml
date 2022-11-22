@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+    env_file: .env.development
+    volumes:
+      - .:/app
+    ports:
+      - "${DJANGO_BIND_PORT}:${DJANGO_BIND_PORT}"
+    command:
+      [
+        "./scripts/start-development.sh",
+      ]
+
+  tests:
+    build:
+      context: .
+    env_file: .env.development
+    volumes:
+      - .:/app
+    command:
+      [
+        "./scripts/start-tests.sh",
+      ]
